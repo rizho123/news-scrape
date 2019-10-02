@@ -1,0 +1,164 @@
+body {
+  background-image: url('../images/crossword.png');
+}
+
+nav {
+  margin-bottom: 1.5rem;
+}
+
+/* Tabs */
+#tabs-nav {
+  padding: 0;
+}
+
+.tabs .tab a {
+  color: #009bad;
+}
+
+.tabs .tab a:hover, 
+.tabs .tab a.active {
+  color: #009bad95;
+}
+
+.tabs .tab a:focus, 
+.tabs .tab a:focus.active {
+  background-color: #98dfaf20;
+}
+
+.tabs .indicator {
+	background-color: #009bad;
+}
+
+.tab-content {
+  padding: 1rem;
+  min-height: 200px;
+  width: 100%
+}
+
+.loader-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader-container span {
+  margin-left: 1rem;
+}
+
+.loader {
+  margin: 0;
+  border: 9px solid #e1bee7; 
+  border-top: 9px solid #ba68c8;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1.7s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.filter-settings {
+  width: 100%;
+}
+
+.filter-settings label {
+  margin-right: 1rem;
+}
+
+/* Articles Tab CSS */
+#articles-tab table {
+  display: none;
+}
+.save-article {
+  color: crimson;
+  margin-left: 0.4rem;
+  font-size: 0.85rem;
+}
+.alert {
+  background-color: aliceblue;
+  color: maroon;
+  display: none;
+  width: 100%;
+  word-wrap: break-word;
+}
+#articles-tab .filter-settings {
+  display: none;
+}
+
+/* Saved Tab CSS */
+.view-comments {
+  color: crimson;
+  margin-left: 0.4rem;
+  font-size: 0.85rem;
+}
+.custom-badge {
+  padding: 0 6px;
+  margin-right: 0.4rem;
+  font-size: 1rem;
+  line-height: 1.3rem;
+  height: 1.3rem;
+  border-radius: 2px;
+}
+#articleComments {
+  margin-bottom: 0.8rem;
+}
+#articleComments td {
+  padding: 0 0.2rem;
+}
+#articleComments td:nth-child(2),
+#articleComments td:nth-child(3) {
+  text-align: right;
+  font-size: 0.85rem;
+} 
+#articleComments td:nth-child(3) a {
+  color: mediumvioletred;
+}
+#articleComments tr td:first-child {
+  padding-left: 0;
+}
+#articleComments tr td:last-child {
+  padding-right: 0;
+}
+#addCommentForm {
+  padding: 0.4rem 0;
+}
+#addCommentForm .btn {
+  font-size: 1rem;
+  padding: 0 0.8rem;
+  margin-bottom: 0.4rem;
+  line-height: 1.8rem;
+  height: 1.8rem;
+}
+
+/* Scrape Tab */
+#scrapeRecordsTable {
+  margin-bottom: 0.8rem;
+}
+#scrapeRecordsTable th,
+#scrapeRecordsTable td {
+  padding: 0 0.2rem;
+}
+#scrapeRecordsTable th:nth-child(2),
+#scrapeRecordsTable td:nth-child(2) {
+  text-align: center;
+}
+#scrapeRecordsTable th:nth-child(3),
+#scrapeRecordsTable th:nth-child(4),
+#scrapeRecordsTable th:nth-child(5),
+#scrapeRecordsTable td:nth-child(3),
+#scrapeRecordsTable td:nth-child(4),
+#scrapeRecordsTable td:nth-child(5) {
+  text-align: right;
+}
+#scrapeRecordsTable tr th:first-child,
+#scrapeRecordsTable tr td:first-child {
+  padding-left: 0;
+}
+#scrapeRecordsTable tr th:last-child,
+#scrapeRecordsTable tr td:last-child {
+  padding-right: 0; 
+}

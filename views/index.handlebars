@@ -1,0 +1,106 @@
+<div class="container">
+  <div class="row z-depth-2 lime lighten-5">
+    <div id="tabs-nav" class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a href="#about-tab">About</a></li>
+        <li class="tab col s3"><a class="active" href="#articles-tab">Articles</a></li>
+        <li class="tab col s3"><a href="#saved-tab">Saved</a></li>
+        <li class="tab col s3"><a href="#scrape-tab">Scrape</a></li>
+      </ul>
+    </div>
+    <div id="about-tab" class="col s12">
+      <div class="tab-content">
+        <p class="center-align"><a href="https://github.com/ats89/news-scraper" target="_blank"><i class="fab fa-github"></i> github link</a></p>
+        <hr>
+        <h5>Scraping</h5>
+        <p>Article titles and links are scraped from three news websites (MSNBC, CNN, and Fox News) using <a href="https://github.com/amir20/phantomjs-node" target="_blank">PhantomJS</a> and <a herf="https://github.com/cheeriojs/cheerio" target="_blank">Cheerio</a>.</p>
+        <p>The category for scraped articles is determined from its associated link.</p>
+        <h5>Data</h5>
+        <p>This app uses a MongoDB for storing data. Scraped articles can be saved for future reference, and each saved article allows for comments.</p>
+        <p>A record of every scrape is also saved to the database and can be used to assess whether the three news sites have changed (such that the scraper needs to be updated).</p>
+        <h5>API Endpoints</h5>
+        <table class="responsive-table">
+          <tbody>
+            <tr>
+              <td>GET</td>
+              <td><code>/api/scrape</code></td>
+              <td>get results of scrape operation</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td><code>/api/articles</code></td>
+              <td>get all saved articles</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/articles</code></td>
+              <td>save a scraped article</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td><code>/api/articles/:id</code></td>
+              <td>get a saved article and its comments</td>
+            </tr>
+            <tr>
+              <td>DELETE</td>
+              <td><code>/api/articles/:id</code></td>
+              <td>deletes article and its comments</td>
+            </tr>
+            <tr>
+              <td>POST</td>
+              <td><code>/api/articles/:article_id/comments</code></td>
+              <td>creates a new comment for an article</td>
+            </tr>
+            <tr>
+              <td>DELETE</td>
+              <td><code>/api/articles/:article_id/comments/:id</code></td>
+              <td>deletes comment associated with an article</td>
+            </tr>
+            <tr>
+              <td>GET</td>
+              <td><code>/api/scraperecords</code></td>
+              <td>gets last 10 scrape records</td>
+            </tr>
+          </tbody>
+        </table> 
+      </div>
+    </div>
+    <div id="articles-tab" class="col s12">
+      <div class="tab-content valign-wrapper">
+        <div class="alert"></div>
+        {{> filter }}
+        <div class="loader-container">
+          <div class="loader"></div>
+          <span>Scraping Articles...</span>
+        </div>
+        {{> table }}
+      </div>   
+    </div>
+    <div id="saved-tab" class="col s12">
+      <div class="tab-content">
+        {{> filter }}
+        {{> table }}
+        {{> modal }}
+      </div>
+    </div>
+    <div id="scrape-tab" class="col s12">
+      <div class="tab-content">
+        <h5>Direct link to /api/scrape:</h5>
+        <a href="/api/scrape" target="_blank"><code>scraped articles json</code></a>
+        <h5>Scrape records (last 10):</h5>
+        <table id="scrapeRecordsTable" class="striped">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Time (sec)</th>
+              <th>MSNBC</th>
+              <th>CNN</th>
+              <th>Fox News</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </div>   
+</div>
