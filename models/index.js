@@ -1,5 +1,4 @@
 module.exports = {
-  Article: require('./Article'),
-  Comment: require('./Comment'),
-  ScrapeRecord: require('./ScrapeRecord')
+  Headline: require("./Headline"),
+  Note: require("./Note")
 };

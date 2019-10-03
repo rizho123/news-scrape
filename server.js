@@ -1,30 +1,42 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const exphbs = require('express-handlebars');
-const mongoose = require('mongoose');
+// Web Scraper Homework Solution Example
+// (be sure to watch the video to see
+// how to operate the site in the browser)
+// -/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 
-const app = express();
-const PORT = process.env.PORT || 3001;
+// Require our dependencies
+var express = require("express");
+var mongoose = require("mongoose");
+var exphbs = require("express-handlebars");
 
-const index = require('./routes/index');
-const api = require('./routes/api');
+// Set up our port to be either the host's designated port, or 3000
+var PORT = process.env.PORT || 3000;
 
-//===== Database Config
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/news-scraper';
+// Instantiate our Express App
+var app = express();
 
-mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+// Require our routes
+var routes = require("./routes");
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.static('public'));
+// Parse request body as JSON
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+// Make public a static folder
+app.use(express.static("public"));
 
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+// Connect Handlebars to our Express app
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
-app.use('/', index);
-app.use('/api', api);
+// Have every request go through our route middleware
+app.use(routes);
 
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}`);
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+// Connect to the Mongo DB
+mongoose.connect(MONGODB_URI);
+
+// Listen on the port
+app.listen(PORT, function() {
+  console.log("Listening on port: " + PORT);
 });
